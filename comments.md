@@ -6,7 +6,7 @@
 structure preferred and chosen by the team, this comment is only for personal projects**
 
 One thing the instructor does, that is not so common and i don't think it's the correct, is that he creates the folder
-components inside the app, aswell as the shadcn components/utils.
+components inside the app, as well as the shadcn components/utils.
 
 This approach is not the best one, because when we put components inside app, even though it may work, it can possibly
 cause some problems such as:
