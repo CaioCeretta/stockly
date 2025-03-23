@@ -1,3 +1,4 @@
+
 import Skeleton from '@/app/_components/skeleton'
 
 export function CardSkeleton() {
