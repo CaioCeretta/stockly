@@ -16,7 +16,7 @@ import TotalRevenueCard from './components/total-revenue-card'
 import TotalSalesCard from './components/total-sales-card'
 import RevenueChartSkeleton from './components/skeletons/revenue-chart-skeleton'
 
-export default function Home() {
+export default async function Home() {
   return (
     <div className="ml-8 mt-8 flex w-full flex-col space-y-8 py-8">
       <Header>
