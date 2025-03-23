@@ -1,8 +1,8 @@
 import { Button } from '@/app/_components/ui/button'
 import { PlusIcon } from 'lucide-react'
-import { DataTable } from '../_components/ui/data-table'
-import { productTableColumns } from './_components/table-columns'
-import ProductList from './_components/product-list'
+import { DataTable } from '@/app/_components/ui/data-table'
+import { productTableColumns } from '@/app/products/_components/table-columns'
+import ProductList from '@/app/products/_components/product-list'
 
 const ProductsPage = async () => {
   const baseUrl =

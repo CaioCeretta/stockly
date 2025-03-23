@@ -1,9 +1,8 @@
 // import { cachedGetRandomNumber } from '@/_data/dal/product/get-products'
 import type { Product } from '@prisma/client'
-import { DataTable } from '../_components/ui/data-table'
-import AddProductButton from './_components/create-product-button'
-import { productTableColumns } from './_components/table-columns'
-
+import { DataTable } from '@/app/_components/ui/data-table'
+import { productTableColumns } from '@/app/products/_components/table-columns'
+import AddProductButton from '@/app/products/_components/create-product-button'
 /* 
   By creating here like this, everytime the application is rebuilded, we are going to generate a new db connection, because
   each PrismaClient is a connection with our db, so to avoid this, inside the folder lib and the file prisma.ts, we're
