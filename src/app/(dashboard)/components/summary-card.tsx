@@ -13,7 +13,7 @@ export const SummaryCardIcon = ({
   return (
     <div
       className={cn(
-        'mb-2 flex h-9 w-9 items-center justify-center rounded-md bg-slate-500 bg-opacity-10 text-slate-500',
+        'bg-opacity-1 mb-2 flex h-9 w-9 items-center justify-center rounded-md bg-slate-500 bg-opacity-10 text-slate-500',
         className,
       )}
     >

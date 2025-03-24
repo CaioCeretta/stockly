@@ -32,7 +32,13 @@ import { formatCurrency } from '@/helpers/currency'
 import { zodResolver } from '@hookform/resolvers/zod'
 import type { Product } from '@prisma/client'
 import { CheckIcon, PlusIcon } from 'lucide-react'
-import { useMemo, useState, type Dispatch, type SetStateAction } from 'react'
+import {
+  useEffect,
+  useMemo,
+  useState,
+  type Dispatch,
+  type SetStateAction,
+} from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { upsertSale } from '@/_data/_actions/sale/upsert-sale'
@@ -56,6 +62,7 @@ interface SelectedProduct {
 }
 
 interface UpsertSheetContentProps {
+  isOpen: boolean
   saleId?: string
   productsOptions: ComboboxOption[]
   products: Product[]
@@ -64,6 +71,7 @@ interface UpsertSheetContentProps {
 }
 
 const UpsertSheetContent = ({
+  isOpen,
   saleId,
   productsOptions,
   products,
@@ -73,6 +81,14 @@ const UpsertSheetContent = ({
   const [selectedProducts, setSelectedProducts] = useState<SelectedProduct[]>(
     defaultSelectedProducts ?? [],
   )
+
+  const form = useForm<UpsertSheetFormType>({
+    resolver: zodResolver(upsertSheetFormSchema),
+    defaultValues: {
+      productId: '',
+      quantity: 1,
+    },
+  })
 
   const { execute: executeUpsertSale } = useAction(upsertSale, {
     onError: ({ error: { validationErrors, serverError } }) => {
@@ -84,6 +100,17 @@ const UpsertSheetContent = ({
       upsertSheetIsOpen(false)
     },
   })
+
+  useEffect(() => {
+    if (isOpen) {
+      form.reset()
+      setSelectedProducts([])
+    }
+  }, [isOpen, form])
+
+  useEffect(() => {
+    setSelectedProducts(defaultSelectedProducts ?? [])
+  }, [defaultSelectedProducts])
 
   const onSubmit = (data: UpsertSheetFormType) => {
     const selectedProduct = products.find(
@@ -169,14 +196,6 @@ const UpsertSheetContent = ({
       })),
     })
   }
-
-  const form = useForm<UpsertSheetFormType>({
-    resolver: zodResolver(upsertSheetFormSchema),
-    defaultValues: {
-      productId: '',
-      quantity: 1,
-    },
-  })
 
   return (
     <SheetContent className="!max-w-[500px]">
